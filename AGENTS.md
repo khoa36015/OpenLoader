@@ -86,3 +86,9 @@ Compiler generates `build/loader_generated.cpp` with:
 - **After writing each new module**, test it using `shellcode/agent.bin` as input
 - Output goes to `output/` folder (create if missing — this is the default output directory)
 - Command: `openloader-build build -config config.json -i shellcode/agent.bin -o output/test_module`
+- **After testing is complete**, always clean up test artifacts:
+  - Delete test config files (`test_*.json`)
+  - Delete test output binaries (`output/test_*.exe`, `build/test_*.exe`)
+  - Delete temp shellcode files (e.g. `shellcode/exit0.bin`)
+  - Delete `__pycache__/` directories
+  - Keep only: `shellcode/agent.bin` and final build output
