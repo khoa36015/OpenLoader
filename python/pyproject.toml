@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openloader-builder"
+version = "1.0.0"
+description = "Build orchestrator for OpenLoader shellcode loader"
+requires-python = ">=3.10"
+
+[project.scripts]
+openloader-build = "openloader.builder:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
